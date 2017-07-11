@@ -4,22 +4,6 @@ import MediaQuery from 'react-responsive';
 import './Selector.styl';
 
 class Selector extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      filter: '',
-      listShown: false,
-      dropOrientation: Selector.DROP_ORIENTATION.down,
-      arrowIconDirectionClass: Selector.ARROW_ICON_DIRECTION_CSS_CLASS.down
-    };
-
-    this.showList = this::this.showList;
-    this.hideList = this::this.hideList;
-    this.selectItem = this::this.selectItem;
-    this.changeFilter = this::this.changeFilter;
-  }
-
   static getItemText(item, filter) {
     if (filter.length) {
       const found = item.slice(0, filter.length);
@@ -61,12 +45,28 @@ class Selector extends Component {
     return Selector.ARROW_ICON_DIRECTION_CSS_CLASS.up;
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filter: '',
+      listShown: false,
+      dropOrientation: Selector.DROP_ORIENTATION.down,
+      arrowIconDirectionCssClass: Selector.ARROW_ICON_DIRECTION_CSS_CLASS.down
+    };
+
+    this.showList = this::this.showList;
+    this.hideList = this::this.hideList;
+    this.selectItem = this::this.selectItem;
+    this.changeFilter = this::this.changeFilter;
+  }
+
   componentDidMount() {
     this.dropOrientation = this.getDropOrientation();
-    const arrowIconDirectionClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, false);
+    const arrowIconDirectionCssClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, false);
 
     this.setState({
-      arrowIconDirectionClass
+      arrowIconDirectionCssClass
     })
   }
 
@@ -85,26 +85,26 @@ class Selector extends Component {
   }
 
   showList() {
-    const arrowIconDirectionClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, true);
+    const arrowIconDirectionCssClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, true);
 
     this.setState(
       {
         listShown: true,
         dropOrientation: this.dropOrientation,
-        arrowIconDirectionClass
+        arrowIconDirectionCssClass
       },
       () => this.textInput.focus()
     )
   }
 
   hideList() {
-    const arrowIconDirectionClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, false);
+    const arrowIconDirectionCssClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, false);
 
     this.setState(
       {
         filter: '',
         listShown: false,
-        arrowIconDirectionClass
+        arrowIconDirectionCssClass
       }
     );
   }
@@ -135,7 +135,7 @@ class Selector extends Component {
       filter,
       listShown,
       dropOrientation,
-      arrowIconDirectionClass
+      arrowIconDirectionCssClass
     } = this.state;
     const filteredItems = this.getFilteredItems();
     const { selected } = this.props;
@@ -176,7 +176,7 @@ class Selector extends Component {
             }
           </span>
           <span
-            className={`selector__arrow-icon ${arrowIconDirectionClass}`}
+            className={`selector__arrow-icon ${arrowIconDirectionCssClass}`}
           />
         </div>
         { listShown &&
