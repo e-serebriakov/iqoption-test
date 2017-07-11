@@ -76,10 +76,6 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(jpg|jpeg|png|svg)$/,
-        loader: `file-loader?name=images/[name].[hash:8].[ext]`
-      },
-      {
         test: /\.(woff|woff2|ttf)$/,
         loader: `file-loader?name=fonts/[name].[hash:8].[ext]`
       },
