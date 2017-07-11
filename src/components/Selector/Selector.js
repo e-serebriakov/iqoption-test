@@ -4,6 +4,12 @@ import MediaQuery from 'react-responsive';
 import './Selector.styl';
 
 class Selector extends Component {
+  /**
+   * Return item text
+   * @static
+   * @param item
+   * @param filter
+   */
   static getItemText(item, filter) {
     if (filter.length) {
       const found = item.slice(0, filter.length);
@@ -17,9 +23,14 @@ class Selector extends Component {
       );
     }
 
-    return <span className="Selector__listItemLabel">{item}</span>;
+    return <span className="selector__item-text">{item}</span>;
   }
 
+  /**
+   * Getter for drop orientation constats
+   * @static
+   * @returns {{up: string, down: string}}
+   */
   static get DROP_ORIENTATION() {
     return {
       up: 'up',
@@ -27,6 +38,11 @@ class Selector extends Component {
     };
   }
 
+  /**
+   * Getter for arrow icon direction css class
+   * @static
+   * @returns {{up: string, down: string}}
+   */
   static get ARROW_ICON_DIRECTION_CSS_CLASS() {
     return {
       up: 'selector__arrow-icon--up',
@@ -34,6 +50,13 @@ class Selector extends Component {
     };
   }
 
+  /**
+   * Return arrow icon direction css class
+   * @static
+   * @param dropOrientation
+   * @param listShown
+   * @returns {string}
+   */
   static getArrowIconDirectionCssClass(dropOrientation, listShown) {
     if (
       dropOrientation === Selector.DROP_ORIENTATION.down && !listShown ||
@@ -45,6 +68,9 @@ class Selector extends Component {
     return Selector.ARROW_ICON_DIRECTION_CSS_CLASS.up;
   }
 
+  /**
+   * @inheritDoc
+   */
   constructor(props) {
     super(props);
 
@@ -61,6 +87,9 @@ class Selector extends Component {
     this.changeFilter = this::this.changeFilter;
   }
 
+  /**
+   * @inheritDoc
+   */
   componentDidMount() {
     this.dropOrientation = this.getDropOrientation();
     const arrowIconDirectionCssClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, false);
@@ -70,6 +99,10 @@ class Selector extends Component {
     })
   }
 
+  /**
+   * Return item list drop orientation
+   * @returns {string}
+   */
   getDropOrientation() {
     if (!this.switch) {
       return;
@@ -84,6 +117,9 @@ class Selector extends Component {
     return Selector.DROP_ORIENTATION.up;
   }
 
+  /**
+   * Show item list
+   */
   showList() {
     const arrowIconDirectionCssClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, true);
 
@@ -97,6 +133,9 @@ class Selector extends Component {
     )
   }
 
+  /**
+   * Hide item list
+   */
   hideList() {
     const arrowIconDirectionCssClass = Selector.getArrowIconDirectionCssClass(this.dropOrientation, false);
 
@@ -109,6 +148,10 @@ class Selector extends Component {
     );
   }
 
+  /**
+   * Change text input value
+   * @param event
+   */
   changeFilter(event) {
     this.setState({ filter: event.target.value });
     if (this.props.selected) {
@@ -116,6 +159,9 @@ class Selector extends Component {
     }
   }
 
+  /**
+   * Filter items
+   */
   getFilteredItems() {
     return this.props.itemList
       .filter(
@@ -123,6 +169,11 @@ class Selector extends Component {
       );
   }
 
+  /**
+   * Handle item select
+   * @param event
+   * @param item
+   */
   selectItem(event, item) {
     this.setState(
       { filter: '' },
@@ -130,6 +181,9 @@ class Selector extends Component {
     );
   }
 
+  /**
+   * Render custom selector
+   */
   renderCustom() {
     const {
       filter,
@@ -202,6 +256,9 @@ class Selector extends Component {
     )
   }
 
+  /**
+   * Render mobile version of selector
+   */
   renderNative() {
     const { itemList, selected } = this.props;
 
@@ -234,6 +291,9 @@ class Selector extends Component {
     );
   }
 
+  /**
+   * @inheritdoc
+   */
   render() {
     return (
       <div>

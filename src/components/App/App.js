@@ -11,6 +11,9 @@ class App extends Component {
     return first.name > second.name ? 1 : -1;
   }
 
+  /**
+   * @inheritDoc
+   */
   render() {
     const shouldShowDevTools = WP_IS_DEV;
     const { countries } = this.props;
