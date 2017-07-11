@@ -1,0 +1,119 @@
+selectorHeight = 40px;
+borderRadius = 5px;
+standardInnerIndent = 8px;
+colorAccent = #fe4a49;
+
+.selector
+  position relative;
+  height: 40px;
+  background: #fff;
+
+  &--native
+    height: selectorHeight;
+    width: 100%;
+    padding: standardInnerIndent;
+    border: 0;
+    font-size: 14px;
+    appearance: none;
+
+  &__switch
+    position: relative;
+    height: selectorHeight;
+    cursor: pointer;
+
+  &__search-input
+    height: 100%;
+    min-width 100%;
+    padding: standardInnerIndent;
+    border: 0;
+    font-size: 14px;
+    outline: 0;
+
+  &__placeholder
+    position absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    transition: all .2s;
+
+    &--lifted
+      transform: translateY(-40px);
+      font-size: 12px;
+
+    &--down
+      transform: translateY(20px);
+      font-size: 12px;
+
+  &__list
+    position absolute;
+    left: 0;
+    max-height 200px;
+    width: 100%;
+
+    &--shown
+      &_up
+        bottom: selectorHeight + 1;
+
+      &_down
+        top: selectorHeight + 1;
+
+  &__arrow-icon
+    position absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display block;
+    height: 20px;
+    width: 20px;
+
+    &:before,
+    &:after
+      position absolute
+      display: block;
+      height: 2px;
+      width: 12px;
+      content: '';
+      background-color: colorAccent;
+      transition: transform .1s;
+
+    &--up
+      &:before,
+      &:after
+        top: 10px;
+
+      &:before
+        left: 0;
+        transform: rotate(-45deg);
+
+      &:after
+        right: 0;
+        transform: rotate(45deg);
+
+    &--down
+      &:before,
+      &:after
+        top: 10px;
+
+      &:before
+        left: 0;
+        transform: rotate(45deg);
+
+      &:after
+        right: 0;
+        transform: rotate(-45deg);
+
+  &__item-match-text
+    color: colorAccent;
+    text-decoration underline;
+
+
+.selector-list
+  overflow-y auto;
+  background-color #fff;
+
+  &__item
+    padding standardInnerIndent;
+    cursor: pointer;
+
+.native-selector-wrapper
+  position: relative;

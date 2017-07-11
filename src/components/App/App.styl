@@ -1,0 +1,31 @@
+@import "../../common/styles/reset.css";
+@import "../../common/styles/fonts.styl";
+
+*
+  box-sizing: border-box
+
+html,
+body
+  height: 100%;
+  font-family: 'PT Sans', Arial;
+
+#root
+  height: 100%;
+  background #34e89e;
+  background: linear-gradient(-45deg, #0f3443, #34e89e);
+
+
+color-font-primary = #141823;
+
+.app
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  color: color-font-primary
+
+  &__country-selector
+    width: 250px;
+    margin-top 30px;
+
