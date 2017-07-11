@@ -10,7 +10,7 @@
   "scripts": {
     "build:dev": "export NODE_ENV=dev; webpack && node staticServer.js",
     "build:prod": "export NODE_ENV=prod; webpack -p && node staticServer.js",
-    "staticServer:dev": "node staticServer.js",
+    "staticServer": "node staticServer.js",
     "static:watch": "webpack --watch --progress",
     "jslint": "eslint --color './src/**/*.js'"
   },
