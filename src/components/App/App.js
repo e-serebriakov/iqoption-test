@@ -61,20 +61,16 @@ App.defaultProps = {
   selectedCountry: null,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    countries: state.countries,
-    selectedCountry: state.selectedCountry,
-  }
-};
+const mapStateToProps = state => ({
+  countries: state.countries,
+  selectedCountry: state.selectedCountry,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    selectCountry: (country) => {
-      dispatch(selectCountry(country))
-    }
-  }
-};
+const mapDispatchToProps = dispatch => ({
+  selectCountry: (country) => {
+    dispatch(selectCountry(country));
+  },
+});
 
 export default connect(
   mapStateToProps,
