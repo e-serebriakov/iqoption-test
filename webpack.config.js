@@ -44,24 +44,24 @@ function getPlugins() {
 }
 
 module.exports = {
-    context: __dirname + '/src',
+  context: __dirname + '/src',
 
-    entry:  {
-        index: './index.js',
-    },
+  entry:  {
+    index: './index.js',
+  },
 
-    output: {
-        path: __dirname + '/public',
-        filename: `[name].js`,
-        publicPath: '/public/'
-    },
+  output: {
+    path: __dirname + '/public',
+    filename: `[name].js`,
+    publicPath: '/public/'
+  },
 
-    resolve: {
-        alias: {
-            'babel-polyfill':
-                path.join(__dirname, 'node_modules/babel-polyfill/dist/polyfill.js'),
-        }
-    },
+  resolve: {
+    alias: {
+      'babel-polyfill':
+        path.join(__dirname, 'node_modules/babel-polyfill/dist/polyfill.js'),
+    }
+  },
 
   module: {
     loaders: [
