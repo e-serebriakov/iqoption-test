@@ -8,7 +8,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "export NODE_ENV=dev; webpack-dev-server -d --hot",
+    "start:dev": "export NODE_ENV=dev; webpack-dev-server -d",
     "build:prod": "export NODE_ENV=prod; webpack -p && node staticServer.js",
     "static:watch": "webpack --watch --progress",
     "jslint": "eslint --color './src/**/*.js'"
