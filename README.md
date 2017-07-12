@@ -3,8 +3,7 @@
 ## instructions
 
 #### development
-* start static server `npm run staticServer`
-* start webpack `npm run static:watch`
+* start webpack-dev-server `npm run start:dev`
 * linting `npm run jslint` (optional)
 
 #### production

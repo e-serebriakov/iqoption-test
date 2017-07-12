@@ -22,14 +22,14 @@ function getPlugins() {
     new CleanWebpackPlugin(['public'], {
       root: __dirname,
       verbose: true,
-      dry: false
+      dry: false,
     }),
     new webpack.DefinePlugin({
       WP_NODE_ENV: JSON.stringify(env),
       WP_IS_DEV: isDev,
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new ExtractTextPlugin('[name].css'),
   ];
@@ -46,21 +46,21 @@ function getPlugins() {
 module.exports = {
   context: __dirname + '/src',
 
-  entry:  {
+  entry: {
     index: './index.js',
   },
 
   output: {
     path: __dirname + '/public',
-    filename: `[name].js`,
-    publicPath: '/public/'
+    filename: '[name].js',
+    publicPath: '/public/',
   },
 
   resolve: {
     alias: {
       'babel-polyfill':
         path.join(__dirname, 'node_modules/babel-polyfill/dist/polyfill.js'),
-    }
+    },
   },
 
   module: {
@@ -68,26 +68,30 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /\/node_modules\//
+        exclude: /\/node_modules\//,
       },
       {
         test: /\.styl$/,
         loader: ExtractTextPlugin.extract('css-loader!postcss-loader!stylus-loader?resolve url'),
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(woff|woff2|ttf)$/,
-        loader: `file-loader?name=fonts/[name].[hash:8].[ext]`
+        loader: 'file-loader?name=fonts/[name].[hash:8].[ext]',
       },
       {
         test: /\.json$/,
-        use: 'json-loader'
-      }
-    ]
+        use: 'json-loader',
+      },
+    ],
+  },
+
+  devServer: {
+    hot: true,
   },
 
   stats: {
-    children: false
+    children: false,
   },
 
   devtool: getDevtool(),
